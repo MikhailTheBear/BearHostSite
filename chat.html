@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Чат с аватарками</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-window {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+        .message-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .message {
+            max-width: 200px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: sandybrown;
+        }
+        .message.user {
+            color: black;
+            background-color: sandybrown;
+        }
+        .message.other {
+            color: green;
+            background-color: sandybrown;
+        }
+        .chat-input {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Чат с пользователем</h1>
+    </header>
+
+    <main>
+        <div class="wrapper">
+        <!-- Выбор пользователя для общения -->
+            <label for="userSelect">Выберите пользователя для чата:</label>
+            <select id="userSelect">
+                <option value="" selected disabled>Выберите пользователя</option>
+            </select>
+
+            <!-- Окно чата -->
+            <div class="chat-window" id="chatWindow">
+                <!-- Здесь будут отображаться сообщения -->
+            </div>
+
+            <!-- Поле для ввода сообщения -->
+            <input type="text" id="messageInput" class="chat-input" placeholder="Введите сообщение">
+            <div class="buttons">
+                <button id="sendMessageBtn">Отправить</button>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        // Получаем данные текущего пользователя
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Элемент для выбора пользователя
+        const userSelect = document.getElementById('userSelect');
+
+        // Функция для заполнения списка пользователей
+        function populateUserSelect() {
+            users.forEach(user => {
+                if (user.username !== loggedInUser) { // Исключаем самого себя
+                    const option = document.createElement('option');
+                    option.value = user.username;
+                    option.textContent = user.username;
+                    userSelect.appendChild(option);
+                }
+            });
+        }
+
+        // Заполняем список пользователей при загрузке страницы
+        populateUserSelect();
+
+        let selectedUser = null; // Храним выбранного пользователя для чата
+        let chatHistory = []; // Храним историю сообщений для текущего чата
+
+        // Функция для получения аватарки пользователя
+        function getUserAvatar(username) {
+            const user = users.find(user => user.username === username);
+            return user ? user.avatar : 'default-avatar.png'; // Если нет аватарки, использовать картинку по умолчанию
+        }
+
+        // Функция для отображения сообщений в чате
+        function displayMessages() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.innerHTML = ''; // Очищаем окно перед обновлением
+
+            chatHistory.forEach(message => {
+                const messageContainer = document.createElement('div');
+                messageContainer.classList.add('message-container');
+
+                const avatarImg = document.createElement('img');
+                avatarImg.src = getUserAvatar(message.sender);
+                avatarImg.alt = 'avatar';
+                avatarImg.classList.add('avatar');
+
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                
+                if (message.sender === loggedInUser) {
+                    messageElement.classList.add('user');
+                } else {
+                    messageElement.classList.add('other');
+                }
+
+                messageElement.textContent = message.text;
+
+                messageContainer.appendChild(avatarImg); // Добавляем аватар
+                messageContainer.appendChild(messageElement); // Добавляем текст сообщения
+                chatWindow.appendChild(messageContainer); // Добавляем в окно чата
+            });
+
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Прокручиваем к последнему сообщению
+        }
+
+        // Обработка выбора пользователя
+        userSelect.addEventListener('change', function() {
+            selectedUser = this.value;
+
+            // Получаем историю чата для выбранного пользователя
+            const chatKey = `chat_${loggedInUser}_${selectedUser}`;
+            chatHistory = JSON.parse(localStorage.getItem(chatKey)) || [];
+            displayMessages(); // Обновляем окно чата
+        });
+
+        // Функция для отправки сообщений
+        document.getElementById('sendMessageBtn').addEventListener('click', function() {
+            const messageInput = document.getElementById('messageInput');
+            const messageText = messageInput.value;
+
+            if (messageText.trim() !== '' && selectedUser) {
+                const newMessage = {
+                    sender: loggedInUser,
+                    text: messageText,
+                    timestamp: new Date().getTime()
+                };
+
+                // Добавляем новое сообщение в историю
+                chatHistory.push(newMessage);
+
+                // Сохраняем историю чата в localStorage для конкретной пары пользователей
+                const chatKey = `chat_${loggedInUser}_${selectedUser}`;
+                localStorage.setItem(chatKey, JSON.stringify(chatHistory));
+
+                // Очищаем поле ввода
+                messageInput.value = '';
+
+                // Обновляем отображение сообщений
+                displayMessages();
+            }
+        });
+
+        // Обновляем сообщения каждые 2 секунды (имитация реального времени)
+        setInterval(() => {
+            if (selectedUser) {
+                const chatKey = `chat_${loggedInUser}_${selectedUser}`;
+                chatHistory = JSON.parse(localStorage.getItem(chatKey)) || [];
+                displayMessages();
+            }
+        }, 2000);
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
