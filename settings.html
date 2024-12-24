@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки аккаунта</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 id="account-settings">Account settings</h1>
+        <button onclick="location.href='dash.html'" id="gotopanel">Go to panel</button>
+        <select class="change-lang" onchange="setLanguageSettings(this.value)">
+            <option value="ru">Русский🇷🇺</option>
+            <option value="en" selected>English🇬🇧</option>
+            <option value="es">Español🇪🇸</option>
+        </select>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <form id="accountSettingsForm">
+                <!-- Аватарка -->
+                <div class="avatar-container">
+                    <img id="avatar-preview" class="avatar" src="" alt="Нет Аватара:[">
+                    <label for="avatar" id="load-avatar">Load avatar</label>
+                    <input type="file" id="avatar" accept="image/*" class="select-file">
+                </div>
+
+                <!-- Имя пользователя -->
+                <label for="username" id="username">Username</label>
+                <input type="text" id="username" required>
+
+                <!-- Email -->
+                <label for="email" id="email">Email:</label>
+                <input type="email" id="email" required>
+
+                <!-- Пароль -->
+                <label for="password" id="password">Password</label>
+                <input type="password" id="password" required>
+
+                <!-- Подтверждение пароля -->
+                <label for="confirmPassword" id="confirmation">Confirm password</label>
+                <input type="password" id="confirmPassword" required>
+
+                <!-- Кнопка сохранения -->
+                 <div class="control-panel">
+                    <button type="submit" id="savechanges">Save Changes</button>
+                    <button id="logout-btn" class="danger">Quit</button>
+                    <button id="delete-account-btn" class="danger">Delete Account</button>
+                 </div>
+            </form>
+        </div>
+
+        <!-- Кнопка выхода -->
+    </main>
+
+    <script>
+        // Получаем данные текущего пользователя из localStorage
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const currentUser = users.find(user => user.username === loggedInUser);
+
+        // Если пользователь авторизован, заполняем поля его данными
+        if (currentUser) {
+            document.getElementById('username').value = currentUser.username;
+            document.getElementById('email').value = currentUser.email;
+            document.getElementById('password').value = currentUser.password;
+
+            // Проверяем, есть ли сохранённая аватарка
+            if (currentUser.avatar) {
+                document.getElementById('avatar-preview').src = currentUser.avatar;
+            } else {
+                document.getElementById('avatar-preview').src = '/images/default-avatar.png'; // Если аватарки нет, отображаем картинку по умолчанию
+            }
+        }
+
+        // Обработка загрузки аватарки
+        document.getElementById('avatar').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatar-preview').src = e.target.result; // Отображаем аватарку
+                    currentUser.avatar = e.target.result; // Сохраняем аватарку в данных пользователя
+                };
+                reader.readAsDataURL(file); // Читаем файл как URL изображения
+            }
+        });
+
+        // Обработка формы (сохранение данных пользователя)
+        document.getElementById('accountSettingsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const newUsername = document.getElementById('username').value;
+            const newEmail = document.getElementById('email').value;
+            const newPassword = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Проверка совпадения паролей
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Обновляем данные текущего пользователя
+            currentUser.username = newUsername;
+            currentUser.email = newEmail;
+            currentUser.password = newPassword;
+
+            // Сохраняем изменения в localStorage
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('loggedInUser', newUsername); // Обновляем имя в системе
+
+            alert('Account details have been successfully updated!');
+        });
+
+        // Обработка выхода из аккаунта
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('loggedInUser'); // Удаляем данные о пользователе
+            window.location.href = 'login.html'; // Перенаправляем на страницу входа
+        });
+
+        document.getElementById('delete-account-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete your account? This action is irreversible!')) {
+                // Удаляем пользователя из массива пользователей
+                const updatedUsers = users.filter(user => user.username !== loggedInUser);
+                localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+                // Удаляем информацию о текущем пользователе
+                localStorage.removeItem('loggedInUser');
+
+                // Перенаправляем на страницу регистрации или входа
+                window.location.href = 'register.html';
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
