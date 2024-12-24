@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="images/key.ico">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+</head>
+    <header>
+        <div class="logo">
+            <h1>BearHost</h1>
+        </div>
+        <select class="change-lang" onchange="setLanguageRegister(this.value)">
+            <option value="ru">Русский🇷🇺</option>
+            <option value="en" selected>English🇬🇧</option>
+            <option value="es">Español🇪🇸</option>
+
+        </select>
+    </header>
+<body>
+    <div class="wrapper">
+        <form id="registerForm" action="" onsubmit="event.preventDefault()">
+            <h1 id="register">Please Register</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Username" required id="username"> 
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="text" placeholder="Email" required id="email"> 
+            <i class='bx bxs-envelope'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" required id="password">
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Confirm password" required id="confirmation">
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+
+        
+
+        <button type="submit" class="btn" id="submit">Register</button>
+
+        <div class="register-link">
+            <p id="ahaa" class="ahaa">Already have an account?</p>
+            <a href="login.html" id="submitLog">Login</a>
+        </div>
+        </form>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
