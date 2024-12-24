@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="images/key.ico">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>BearHost</h1>
+        </div>
+        <select class="change-lang" onchange="setLanguageLogin(this.value)">
+            <option value="ru">Русский🇷🇺</option>
+            <option value="en" selected>English🇬🇧</option>
+            <option value="es">Español🇪🇸</option>
+
+        </select>
+    </header>
+    <div class="wrapper">
+        <form id="loginForm" action="">
+            <h1 id="login">Please Login</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Username" required id="username"> 
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" required id="password">
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+
+        <div class="remember">
+            <input type="checkbox"><label for="" id="remember"> Remember Me</label>
+        </div>
+
+        <button type="submit" class="btn" id="submitLog">Login</button>
+
+        <div class="register-link">
+            <p><a href="forgotpassword.html">Forgot Password?</a></p>
+            <p id="dhaa" class="dhaa">Dont have an account?</p>
+            <a href="register.html" id="submit">Register</a>
+        </div>
+        </form>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

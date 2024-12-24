@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1 class="logo">BearHost</h1>
+        <div class="account">
+            <h1 id="welcomeback">Welcome back, <span id="username-display">Гость</span>!</h1>
+        </div>
+        <select class="change-lang" onchange="setLanguageDash(this.value)">
+            <option value="ru">Русский🇷🇺</option>
+            <option value="en" selected>English🇬🇧</option>
+            <option value="es">Español🇪🇸</option>
+
+        </select>
+        <div class="log-out">
+            <button id="settings-btn" style="display: none;" onclick="location.href='settings.html'">Settings</button>
+        </div>
+        
+    </header>
+
+    <div class="wrapper">
+        <h1 id="servercontrol">Server Control</h1>
+        <div class="control-panel">
+            <button id="startServerBtn">Start</button>
+            <button class="restart" id="restartServerBtn">Restart</button>
+            <button class="danger" id="stopServerBtn">Stop</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('startServerBtn').addEventListener('click', function() {
+            // Отправляем запрос на сервер для запуска Minecraft
+            fetch('http://192.168.105.5:3000/start-server', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('The server is starting...');
+                } else {
+                    alert('Error... Look in the console');
+                }
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            alert('An error has occurred...');
+        });
+            
+        });
+
+        document.getElementById('restartServerBtn').addEventListener('click', () => {
+    fetch('http://192.168.105.5:3000/restart-server', { method: 'POST' })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error has occurred...');
+        });
+});
+
+        document.getElementById('stopServerBtn').addEventListener('click', function() {
+            fetch('http://192.168.105.5:3000/stop-server', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Server stopped!');
+                } else {
+                    alert('An error occurred when stopping the server');
+                }
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred when stopping the server...');
+            });
+        });
+    </script>
+
+    
+    <script>
+        // Проверка, вошёл ли пользователь
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        
+        if (loggedInUser) {
+            // Если пользователь вошёл, выводим его имя в header
+            document.getElementById('username-display').textContent = loggedInUser;
+            document.getElementById('settings-btn').style.display = 'inline'; // Показываем кнопку "Настройки"
+        } else {
+            // Если пользователь не вошёл, оставляем "Гость"
+            document.getElementById('username-display').textContent = '?';
+        }
+
+        // Функция для выхода из системы
+        // document.getElementById('logout-btn').addEventListener('click', function() {
+        //     localStorage.removeItem('loggedInUser'); // Удаляем информацию о вошедшем пользователе
+        //     window.location.reload(); // Перезагружаем страницу
+        //     window.location.href = 'login.html';
+        // });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
