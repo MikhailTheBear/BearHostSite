@@ -1,0 +1,452 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+    align-items: center;
+    height: 100vh;
+    background: url(login.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper{
+    width: 420px;
+    background: transparent;
+    border: 2px solid sandybrown;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px salmon;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+h1{
+    font-size: 36px;
+    text-align: center;
+    font-weight: 400;
+    color: darkorange;
+}
+
+.input-box{
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    position: relative;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"]
+{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    padding: 20px 45px 20px 20px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+input::placeholder{
+    color: #fff;
+}
+
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.remember{
+    display: inline-flex;
+    gap: 1rem;
+    width: 100%;
+    font-size: 14.5px;
+    margin: -15px 0px 15px;
+}
+
+label{
+    color: #fff;
+    margin-right: 3px;
+    display: block;
+    text-align: center;
+}
+
+.remember a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember a:hover{
+    color: chocolate;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: coral;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px yellow;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.wrapper .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ahaa{
+    margin-top: 20px;
+}
+
+.dhaa{
+    margin-top: 20px;
+}
+
+.register-link p{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    color: chocolate;
+}
+
+.change-lang{
+    background: transparent;
+    color: #fff;
+    border: 0;
+}
+
+select{
+    background: transparent;
+    border: darkorange 2px solid;
+    border-radius: 20px;
+    color: #fff;
+}
+
+
+html{
+    font-size: 16px;
+}
+
+
+h2 {
+    color: red;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.control-panel{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.picture{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+button{
+    width: 16rem;
+    height: 45px;
+    background: coral;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px yellow;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.danger{
+    width: 16rem;
+    height: 45px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px yellow;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.danger:hover{
+    background: red;
+}
+
+.btn:hover{
+    background: darkorange;
+}
+
+button:hover{
+    background: darkorange;
+}
+
+
+
+header{
+    width: 100%;
+    background: transparent;
+    border-radius: 20px;
+    border-bottom: 2px solid sandybrown;
+    backdrop-filter: blur(20px);
+    display: flex;
+    gap: 7rem;
+    height: 6rem;
+    align-content: center;
+    align-items: center;
+}
+
+
+footer{
+    width: 100%;
+    background: transparent;
+    border-radius: 20px;
+    border-top: 2px solid sandybrown;
+    backdrop-filter: blur(20px);
+    height: 6rem;
+    color: #fff;
+    text-align: center;
+}
+
+
+a{
+    font-family: "Philosopher", sans-serif;
+    color: #FAEEDD;
+    text-decoration: none;
+}
+a:hover{
+    color: darkorange;
+}
+
+.logo{
+    font-family: "Reggae One", system-ui;
+	font-style: normal;
+	font-weight: normal;
+    cursor: pointer;
+    margin-left: 100px;
+
+}
+
+.menu{
+    display: flex;
+    gap: 5rem;
+    font-family: "Revalia", sans-serif;
+	font-style: normal;
+	font-weight: normal;
+    cursor: pointer;
+    margin-left: 200px;
+
+    width: 100%;
+}
+
+.h{
+   text-align: center; 
+}
+
+.account{
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    margin-left: 150px;
+}
+
+
+
+.avatar {
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-container{
+    text-align: center;
+}
+
+.select-file{
+   border: 2px solid sandybrown;
+   border-radius: 20px;
+}
+
+.chat-window{
+    border: 2px solid sandybrown;
+    border-radius: 20px;
+}
+
+.restart{
+    background-color: #28a745!important; /* Зеленый цвет */
+    color: white; /* Белый цвет текста */
+    border: none; /* Без рамки */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    text-align: center; /* Выравнивание текста */
+    font-size: 16px; /* Размер текста */
+    border-radius: 40px; /* Скругленные углы */
+    cursor: pointer; /* Изменение курсора на указатель */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+}
+
+.restart:hover {
+    background-color: #218838!important; /* Темно-зеленый цвет при наведении */
+}
+
+.restart:active {
+    background-color: #1e7e34!important; /* Цвет при нажатии */
+}
+
+.tools{
+    display: flex;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tools_wrapper{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid sandybrown;
+    border-radius: 20px;
+}
+
+.left_tools{
+    width: 445px;
+    margin-bottom: 100px;
+}
+
+.right_tools{
+    width: 445px;
+    margin-bottom: 100px;
+}
+
+.tools h3{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-size: 28px;
+    font-family: "LXGW WenKai TC", cursive;
+    font-weight: 600;
+    font-style: normal;
+    color: sandybrown;
+}
+
+.tools h4{
+    font-size: 16px;
+    color: sandybrown;
+    padding-bottom: 24px;
+    padding-top: 24px;
+}
+
+.tool_1{
+    position: relative;
+}
+
+.tool_1::before{
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: #C4C4C4;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tool_1::after{
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: sandybrown;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tool_2{
+    position: relative;
+}
+
+.tool_2::before{
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: #C4C4C4;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tool_2::after{
+    content: "";
+    width: 20%;
+    height: 4px;
+    background: sandybrown;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tool_3{
+    position: relative;
+}
+
+.tool_3::before{
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: #C4C4C4;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tool_3::after{
+    content: "";
+    width: 90%;
+    height: 4px;
+    background: sandybrown;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}

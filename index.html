@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page.</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Reggae+One&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>BearHost</h1>
+        </div>
+
+        <div class="menu">
+        
+            <a href="index.html" id="home">Home</a>
+            <a href="login.html" id="submitLog">Login</a>
+            <a href="register.html" id="submit">Register</a>
+            
+        </div>
+        
+        <select class="change-lang" onchange="setLanguageMain(this.value)">
+            <option value="ru">Русский🇷🇺</option>
+            <option value="en" selected>English🇬🇧</option>
+            <option value="es">Español🇪🇸</option>
+
+        </select>
+
+    </header>
+    <main>
+        <section class="tools">
+            <div class="tools_wrapper">
+                <div class="tools">
+                    <div class="left_tools">
+                        <h3 id="whyus">Why us?</h3>
+                        <h4 class="tool_1">Processor: 100%</h4>
+                        <h4 class="tool_2">RAM 2GB</h4>
+                        <h4 class="tool_3">Disk 80-100GB</h4>
+                </div>
+            </div>
+       </section>
+
+    </main>
+
+
+
+
+    <footer>
+        <p>&copy; 2024 BearHost | Разработано MikhailTheBear</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
